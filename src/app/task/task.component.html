@@ -1,0 +1,267 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Check Donatori</h4>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row section-to-print">
+      <div class="col-md-12 col-sm-12">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="task-module">
+              <div class="task-header">
+                <div class="task-title">
+                  <h2>Donatori</h2>
+                  <h5>{{donatori.length}} Totali donatori</h5>
+                </div>
+                <div class="header-button">
+                  <button mat-raised-button color="primary" (click)="addNewTask(sidenav)" >Apri Filtri</button>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-md-12 col-sm-12">
+                  <mat-sidenav-container class="task-container">
+                    <mat-sidenav #sidenav [mode]="mode.value" position="end">
+                      <div class="header">
+                        <h2 class="header-title">Seleziona Valori</h2>
+                        <div class="header-close m-r-0" >
+
+                          <!-- <button mat-icon-button   matTooltip="Cerca Località in note" *ngIf="!cerca_note" (click)="cerca_note=!cerca_note">
+                              <mat-icon>check_box_outline_blank</mat-icon>
+                          </button>
+                          <button mat-icon-button   matTooltip="Rimuovi modalità note" *ngIf="cerca_note" (click)="cerca_note=!cerca_note">
+                                <mat-icon>check_box</mat-icon>
+                          </button> -->
+                          <!-- <button mat-icon-button  (click)="saveTask(sidenav)" matTooltip="Cerca Donatori" *ngIf="!cerca_note">
+                            <mat-icon>search</mat-icon>
+                          </button> -->
+                          <button mat-icon-button (click)="closeSlider(sidenav)">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                      <form class="register-form m-4" [formGroup]="taskForm">
+
+                        <div class="row">
+                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Seleziona Filtri</mat-label>
+                              <mat-select formControlName="filtri_personalizzati" (selectionChange)="cambio_filtro($event)"> 
+                                <mat-option *ngFor="let a of ['Compleanno','Località','Note','Gruppo','Piastrine','Numero tessera','Cognome','Tutti']" [value]="a">
+                                  {{a}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Seleziona Anno</mat-label>
+                              <mat-select formControlName="anno">
+                                <mat-option *ngFor="let a of anno" [value]="a.anno">
+                                  {{a.anno}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                        <div class="row" *ngIf="cerca_note">
+                            <div class="col-12">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Seleziona Località in note..." formControlName="note">
+                                </mat-form-field>
+                              </div>
+                              <!-- <div class="col-3">
+                                  <button mat-flat-button color="primary" class="ml-3" (click)="saveTask(sidenav)">Cerca</button>
+                              </div>   -->
+                        </div>
+
+                        <div class="row" *ngIf="cerca_gruppo">
+                          <div class="col-12">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Scegli il gruppo...</mat-label>
+                            <mat-select formControlName="gruppo">
+                              <mat-option *ngFor="let g of ['0+','0-','A+','A-','B+','B-','AB+','AB-']" [value]="g">
+                                {{g}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                            </div>
+                      </div>
+
+                      <div class="row" *ngIf="cerca_piastrine">
+                        <div class="col-12">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Valore Piastrine..." formControlName="piastrine">
+                            </mat-form-field>
+                          </div>
+                          <!-- <div class="col-3">
+                              <button mat-flat-button color="primary" class="ml-3" (click)="saveTask(sidenav)">Cerca</button>
+                          </div>   -->
+                    </div>
+                    <div class="row" *ngIf="cerca_cognome">
+                      <div class="col-12">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Cognome..." formControlName="cognome">
+                          </mat-form-field>
+                        </div>
+
+                  </div>
+                    <div class="row" *ngIf="cerca_tessera">
+                      <div class="col-12">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Inserire numero tessera..." formControlName="tessera">
+                          </mat-form-field>
+                        </div>
+                        <!-- <div class="col-3">
+                            <button mat-flat-button color="primary" class="ml-3" (click)="saveTask(sidenav)">Cerca</button>
+                        </div>   -->
+                  </div>
+                  <div class="row" *ngIf="cerca_compleanno">
+                    <div class="col-12">
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Data Nuova Donazione</mat-label>
+                          <input matInput [matDatepicker]="dnd" formControlName="data_compleanno" required>
+                          <mat-datepicker-toggle matSuffix [for]="dnd"></mat-datepicker-toggle>
+                          <mat-datepicker #dnd></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                      <!-- <div class="col-3">
+                          <button mat-flat-button color="primary" class="ml-3" (click)="saveTask(sidenav)">Cerca</button>
+                      </div>   -->
+                </div>
+                    <div class="row">
+                      <div class="header-button">
+                        <mat-spinner-button [options]="spinnerButtonOptions" (btnClick)="someFunc(sidenav)">
+                        </mat-spinner-button>
+                      </div>
+                    </div>
+
+                        <div class="row" *ngIf="nascondi_citta">
+                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+                              <div class="task-list" 
+                                style="position: relative; max-height: 500px;" [perfectScrollbar]>
+                                <div class="task-box">
+                                <mat-checkbox (change)="masterToggleLoc($event)" color="primary">
+                                  </mat-checkbox>
+                                </div>
+                                <div class="task-box" *ngFor="let loc of localita" >
+                                  <mat-checkbox  class="m-r-15" [checked]="loc.seleziona" (change)="record(loc)"
+                                    color="primary">
+                                  </mat-checkbox>
+                                  <div matTooltip="Città">
+                                    {{loc.comune_domicilio}}</div>
+                                </div>
+                              </div>
+
+                          </div>
+                        </div>
+                      </form>
+                    </mat-sidenav>
+
+                    <mat-sidenav-content>
+
+                      
+                      <div class="row clearfix" style="position: relative; min-height: 500px;" [perfectScrollbar]>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="card">
+                              <div class="header">
+                                <h2>
+                                  <strong>Elenco</strong></h2>
+                                  <i class="material-icons col-pink" style="cursor:pointer;" *ngIf="donatori.length>0" (click)="scarica()">file_download</i>
+                              </div>
+                              <div class="body table-responsive">
+                                <cdk-virtual-scroll-viewport itemSize="50">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th> <mat-checkbox (change)="masterToggle($event)">
+                                      </mat-checkbox></th>
+                                      <th>TESSERA</th>
+                                      <th>NOMINATIVO</th>
+                                      <th>SESSO</th>
+                                      <th>SI</th>
+                                      <th>PLT</th>
+                                      <th>PM</th>
+                                      <th>MULTI</th>
+                                      <th>GRUPPO</th>
+                                      <th>PIASTRINE</th>
+                                      <th>DOMICILIO</th>
+                                      <th>DATA DI NASCITA</th>
+                                      <!-- <th>ULTIMA DONAZIONE</th> -->
+                                      <th>FERRITINA</th>
+                                      <th>TELEFONO</th>
+                                      <th>GG</th>
+                                      <th>NOTE GENERICHE</th>
+                                      <th>NOTE SULLA SALUTE</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *cdkVirtualFor="let d of donatori; index as i">
+                                      <td><mat-checkbox [checked]="d.seleziona" (change)="record(d)"></mat-checkbox></td>
+                                      <th scope="row">{{(d.tessera)}}</th>
+                                      <td>{{d.cognome}} <br>{{d.nome}}</td>
+                                      <td>{{d.sesso}}</td>
+                                      <td>
+                                        <div class="demo-google-material-icon ">
+                                        <i class="material-icons col-pink" [ngClass]="{'col-pink': (d.donazione_totale_sangue_intero>0 && d.gestione_donazioni.gg<d.gestione_donazioni.SI),'col-green': (d.donazione_totale_sangue_intero>0 && d.gestione_donazioni.gg>=d.gestione_donazioni.SI)}">check_circle</i>
+                                      </div>
+                                    </td>
+                                    <td>
+                                        <div class="demo-google-material-icon ">
+                                        <i class="material-icons col-pink" [ngClass]="{'col-pink': (d.donazione_totale_plt>0 && d.gestione_donazioni.gg<d.gestione_donazioni.piastrine),'col-green': (d.donazione_totale_plt>0 && d.gestione_donazioni.gg>=d.gestione_donazioni.piastrine)}">check_circle</i>
+                                      </div>
+                                    </td>
+                                    <td>
+                                        <div class="demo-google-material-icon ">
+                                        <i class="material-icons col-pink" [ngClass]="{'col-pink': (d.donazione_totale_plasma>0 && d.gestione_donazioni.gg<d.gestione_donazioni.plasma),'col-green': (d.donazione_totale_plasma>0 && d.gestione_donazioni.gg>=d.gestione_donazioni.plasma)}">check_circle</i>
+                                      </div>
+                                    </td>
+                                    <td>
+                                        <div class="demo-google-material-icon ">
+                                        <i class="material-icons col-pink" [ngClass]="{'col-pink': (d.donazione_totale_multicomponenti>0 && d.gestione_donazioni.gg<d.gestione_donazioni.multicomponenti),'col-green': (d.donazione_totale_multicomponenti>0 && d.gestione_donazioni.gg>=d.gestione_donazioni.multicomponenti)}">check_circle</i>
+                                      </div>
+                                    </td>
+                                      <td>{{d.gruppo}}</td>
+                                      <td>{{d.valore_plt}}</td>
+                                      <td>{{d.comune_domicilio}}</td>
+                                      <td>{{d.data_di_nascita}}</td>
+                                      <!-- <td>{{d.ultima_donazione}}</td> -->
+                                      <td>{{d.ferritina}}</td>
+                                      <td>{{d.telefono}}</td>
+                                      <td><div class="badge col-red">{{d.gestione_donazioni.tipo}} ({{d.gestione_donazioni.gg}})</div></td>
+                                      <td style="cursor:pointer;" (click)="apriNote(d)">{{d.note_generiche}}</td>
+                                      <td style="cursor:pointer;" (click)="apriNoteS(d)">{{d.note_relative_alla_salute}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </cdk-virtual-scroll-viewport>
+                              </div>
+                            </div>
+                          </div>                         
+                      </div>
+                      
+                    </mat-sidenav-content>
+                  </mat-sidenav-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,383 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Nuovo Donatore</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                 ADVST</a>
+            </li>
+            <!-- <li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Forms</a>
+            </li>
+            <li class="breadcrumb-item active">Examples</li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Scheda Donatore</h2>
+
+          </div>
+          <div class="body">
+            <form class="register-form m-4" [formGroup]="register" (ngSubmit)="onRegister()">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Tessera</mat-label>
+                        <input matInput formControlName="tessera" required>
+                        <mat-error *ngIf="register.get('tessera').hasError('required')">
+                          Inserire un Numero Tessera!
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Cognome</mat-label>
+                          <input matInput formControlName="cognome" required>
+                          <mat-icon matSuffix>face</mat-icon>
+                          <mat-error *ngIf="register.get('cognome').hasError('required')">
+                            Campo obbligatorio!
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Nome</mat-label>
+                            <input matInput formControlName="nome" required>
+                            <mat-icon matSuffix>face</mat-icon>
+                            <mat-error *ngIf="register.get('nome').hasError('required')">
+                              Campo obbligatorio!
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Data Nascita</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="data_di_nascita" required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="register.get('data_di_nascita').hasError('required')">
+                                  Campo obbligatorio!
+                                </mat-error>
+                              </mat-form-field>
+                          </div> 
+                          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Luogo Nascita</mat-label>
+                                <input matInput formControlName="luogo_di_nascita" required>
+                                <mat-icon matSuffix>location_city</mat-icon>
+                                <mat-error *ngIf="register.get('luogo_di_nascita').hasError('required')">
+                                  Campo obbligatorio!
+                                </mat-error>
+                              </mat-form-field>
+                            </div>                                                 
+                                                   
+                  </div>              
+              <div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Comune Residenza</mat-label>
+                    <input matInput formControlName="comune_di_residenza" required>
+                    <mat-error *ngIf="register.get('comune_di_residenza').hasError('required')">
+                      Campo obbligatorio!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Indirizzo Residenza</mat-label>
+                      <input matInput formControlName="indirizzo_residenza" required>
+                      <mat-error *ngIf="register.get('indirizzo_residenza').hasError('required')">
+                        Campo obbligatorio!
+                      </mat-error>
+                    </mat-form-field>
+                  </div> 
+                  <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>CAP</mat-label>
+                      <input matInput formControlName="cap" required>
+                      <mat-error *ngIf="register.get('cap').hasError('required')">
+                        Campo obbligatorio!
+                      </mat-error>
+                    </mat-form-field>
+                  </div> 
+                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Comune Domicilio</mat-label>
+                        <input matInput formControlName="comune_domicilio" >
+                      </mat-form-field>
+                    </div> 
+                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Indirizzo Domicilio</mat-label>
+                          <input matInput formControlName="indirizzo_domicilio" >
+                        </mat-form-field>
+                      </div> 
+                      <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>CAP</mat-label>
+                            <input matInput formControlName="cap_domicilio" >
+                            <mat-error *ngIf="register.get('cap').hasError('required')">
+                              Campo obbligatorio!
+                            </mat-error>
+                          </mat-form-field>
+                        </div>                                                        
+              </div>
+              <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="telefono" >
+                      </mat-form-field>
+                    </div> 
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Email</mat-label>
+                          <input matInput formControlName="email" >
+                          <mat-error *ngIf="register.get('email').touched">
+                            La mail non è in un formato valido!
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Codice Fiscale</mat-label>
+                            <input matInput formControlName="codice_fiscale" class="uppercase" >
+                          </mat-form-field>
+                        </div>                                                            
+                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Sesso</mat-label>
+                          <mat-select formControlName="sesso" required>
+                            <mat-option value="M">M</mat-option>
+                            <mat-option value="F">F</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="register.get('sesso').hasError('required')">
+                            Campo obbligatorio!
+                          </mat-error>
+                        </mat-form-field>                            
+                      </div>
+                    </div>
+                    <div class="row">                              
+                      <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Gruppo</mat-label>
+                            <mat-select formControlName="gruppo">
+                              <mat-option *ngFor="let g of ['0+','0-','A+','A-','B+','B-','AB+','AB-']" [value]="g">
+                                {{g}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>                            
+                        </div> 
+                        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Fenotipo</mat-label>
+                              <mat-select formControlName="fenotipo">
+                                <mat-option *ngFor="let g of ['ccdee-','Ccdee-','CCDee-','CcDee-','CcDEe-','ccDee-','ccDEe-','ccDEE-','CcDEe-','CCDEe-','ccdee+','CcDEe+','CcDee+','CCDee+','ccDEe+','ccDee+','ccDEE+']" [value]="g">
+                                  {{g}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>                            
+                          </div> 
+                          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Data Nuova Donazione</mat-label>
+                                <input matInput [matDatepicker]="dnd" formControlName="ultima_donazione" required>
+                                <mat-datepicker-toggle matSuffix [for]="dnd"></mat-datepicker-toggle>
+                                <mat-datepicker #dnd></mat-datepicker>
+                                <mat-error *ngIf="register.get('ultima_donazione').hasError('required')">
+                                  Campo obbligatorio!
+                                </mat-error>
+                              </mat-form-field>
+                          </div>
+                          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>ECG</mat-label>
+                                <input matInput [matDatepicker]="decg" formControlName="ultima_ecg" >
+                                <mat-datepicker-toggle matSuffix [for]="decg"></mat-datepicker-toggle>
+                                <mat-datepicker #decg></mat-datepicker>
+                                <mat-error *ngIf="register.get('ultima_ecg').hasError('required')">
+                                  Campo obbligatorio!
+                                </mat-error>
+                              </mat-form-field>
+                          </div>
+                          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Luogo di Donazione</mat-label>
+                              <mat-select formControlName="luogo_donazione" >
+                                <mat-option *ngFor="let g of ['Autoemoteca','S.T.']" [value]="g">
+                                  {{g}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>                            
+                          </div>
+                          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline" required>
+                              <mat-label>Tipo Donazione</mat-label>
+                              <mat-select formControlName="tipo" >
+                                <mat-option *ngFor="let g of tipo_donazione" [value]="g">
+                                  {{g}}
+                                </mat-option>
+                                <mat-error *ngIf="register.get('tipo').hasError('required')">
+                                  Campo obbligatorio!
+                                </mat-error>
+                              </mat-select>
+                            </mat-form-field>                            
+                          </div>                                                                                                        
+              </div>
+
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Note Generiche</mat-label>
+                      <textarea matInput formControlName="note_generiche" ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Note Relative alla Salute</mat-label>
+                        <textarea matInput formControlName="note_relative_alla_salute" ></textarea>
+                      </mat-form-field>
+                    </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <button class="mr-3" [disabled]="!register.valid" mat-raised-button color="primary">Inserisci</button>
+                  <button type="button" mat-button>Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- <div class="row clearfix">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="card">
+              <div class="header">
+                <h2>
+                  Donazioni <strong>Sangue</strong></h2>
+                
+              </div>
+              <div class="body table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>NOME</th>
+                      <th>COGNOME</th>
+                      <th>DATA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let s of sangue; index as i">
+                      <th scope="row">{{(sangue.length-i)}}</th>
+                      <td>{{s.tessera}}</td>
+                      <td>{{s.data}}</td>
+                      <td>{{s.luogo}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="card">
+              <div class="header">
+                <h2>
+                  Donazioni <strong>Eferesi</strong></h2>
+                
+              </div>
+              <div class="body table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>NOME</th>
+                      <th>COGNOME</th>
+                      <th>DATA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let ef of eferesi; index as i">
+                      <th scope="row">{{(eferesi.length-i)}}</th>
+                      <td>{{ef.tessera}}</td>
+                      <td>{{ef.data}}</td>
+                      <td>{{ef.luogo}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    Donazioni <strong>PLASMA</strong></h2>
+                  
+                </div>
+                <div class="body table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>NOME</th>
+                        <th>COGNOME</th>
+                        <th>DATA</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let ad of plasma; index as i">
+                        <th scope="row">{{(admo.length-i)}}</th>
+                        <td>{{ad.tessera}}</td>
+                        <td>{{ad.data}}</td>
+                        <td>{{ad.luogo}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="card">
+                  <div class="header">
+                    <h2>
+                      Donazioni <strong>ADMO</strong></h2>
+                    
+                  </div>
+                  <div class="body table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>NOME</th>
+                          <th>COGNOME</th>
+                          <th>DATA</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let ad of d_admo; index as i">
+                          <th scope="row">{{(admo.length-i)}}</th>
+                          <td>{{ad.tessera}}</td>
+                          <td>{{ad.data}}</td>
+                          <td>{{ad.luogo}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>            
+      </div> -->
+  </div>
+</section>

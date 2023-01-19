@@ -1,0 +1,132 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Tabella Donazioni</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a href="javascript:void(0)">
+                <i class="fas fa-home"></i> Mese</a>
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+              <a href="javascript:void(0)" onClick="return false;">Anno</a>
+            </li>
+           
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Donatori</strong> {{dati.length}} </h2>
+              <i class="material-icons col-pink" style="cursor:pointer;" *ngIf="dati.length>0" (click)="scarica()">file_download</i>
+            
+          </div>
+          <div class="body table-responsive">
+              <div class="row">
+            <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mb-2">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Mese</mat-label>
+                <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium"> -->
+                <mat-select [(ngModel)]="mese" (selectionChange)="filtra()">
+                  <mat-option *ngFor="let g of mesi" [value]="g.valore">
+                    {{g.mese}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Anno</mat-label>
+                  <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium"> -->
+                  <mat-select [(ngModel)]="anno_corrente">
+                    <mat-option *ngFor="let g of anno" [value]="g">
+                      {{g}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              </div>
+            <table mat-table [dataSource]="dati" class="w-100">
+              <!-- Gruppo Sanguigno -->
+              <ng-container matColumnDef="Gruppo">
+                  <th mat-header-cell *matHeaderCellDef> Gruppo Sanguigno </th>
+                  <td mat-cell *matCellDef="let element"> {{element.gruppo}} {{element.fenotipo}} </td>
+                </ng-container>
+              <!-- Nominativo -->
+              <ng-container matColumnDef="Nominativo">
+                <th mat-header-cell *matHeaderCellDef> Nominativo </th>
+                <td mat-cell *matCellDef="let element"> {{element.cognome}} {{element.nome}} </td>
+              </ng-container>
+              <!-- Sesso -->
+              <ng-container matColumnDef="Sesso">
+                <th mat-header-cell *matHeaderCellDef> Sesso </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <div class="badge" [ngClass]="{'col-orange' : element.sesso=='F','col-brown' : element.sesso=='M'}">{{element.sesso}}</div>
+                </td>
+              </ng-container>
+               <!-- Data Donazione -->
+               <ng-container matColumnDef="Data_Donazione">
+                  <th mat-header-cell *matHeaderCellDef> Data Donazione </th>
+                  <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+                </ng-container>
+               <!-- Tessera -->
+               <ng-container matColumnDef="Tessera">
+                  <th mat-header-cell *matHeaderCellDef> Tessera </th>
+                  <td mat-cell *matCellDef="let element" style="cursor:pointer;" (click)="apriModal(element)"> <div class="badge col-cyan">{{element.tessera}}</div></td>
+                </ng-container>
+              <!-- Smart Donor -->
+              <ng-container matColumnDef="smart_donor">
+                <th mat-header-cell *matHeaderCellDef> Smart Donor </th>
+                <td mat-cell *matCellDef="let element"> 
+                  <i class="material-icons col-orange" *ngIf="element.smart_donor==1" >check</i>
+                </td>
+              </ng-container>
+                <!-- Luogo -->
+               <ng-container matColumnDef="Luogo_Donazione">
+                  <th mat-header-cell *matHeaderCellDef> Luogo Donazione </th>
+                  <td mat-cell *matCellDef="let element"> {{element.luogo}} </td>
+                </ng-container>
+                <!-- Tipologia -->
+                <ng-container matColumnDef="Tipologia">
+                    <th mat-header-cell *matHeaderCellDef> Tipo di Donazione </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Tipologia}} </td>
+                  </ng-container>
+                <!-- Modo Invio Esami -->
+                <ng-container matColumnDef="Modo_Invio_Esami">
+                    <th mat-header-cell *matHeaderCellDef> Modo Invio Esami </th>
+                    <td mat-cell *matCellDef="let element"> {{element.modo_invio_esami}} </td>
+                  </ng-container>  
+                <!-- Data Invio Esami -->
+                <ng-container matColumnDef="Data_Invio_Esami">
+                    <th mat-header-cell *matHeaderCellDef> Data Invio Esami </th>
+                    <td mat-cell *matCellDef="let element"> {{element.data_invio_esami}} </td>
+                  </ng-container>
+                <!-- Tesserino -->
+                <ng-container matColumnDef="Tesserino">
+                    <th mat-header-cell *matHeaderCellDef> Tesserino </th>
+                    <td mat-cell *matCellDef="let element"><div [ngClass]="{'badge col-green' : element.nuovo_donatore=='Nuovo' ||  element.nuovo_donatore=='1'}"> {{element.nuovo_donatore}}</div> </td>
+                  </ng-container>
+                <!-- Modo Invio Esami -->
+                <ng-container matColumnDef="Note">
+                    <th mat-header-cell *matHeaderCellDef> Note </th>
+                    <td mat-cell *matCellDef="let element"> {{element.note}} </td>
+                  </ng-container> 
+                                                                                           
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

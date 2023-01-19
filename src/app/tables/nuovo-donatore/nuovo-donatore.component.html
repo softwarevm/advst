@@ -1,0 +1,137 @@
+<section class="content">
+    <div class="container-fluid">
+      <div class="block-header">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ul class="breadcrumb breadcrumb-style ">
+              <li class="breadcrumb-item">
+                <h4 class="page-title">Nuovi Donatori</h4>
+              </li>
+              <li class="breadcrumb-item bcrumb-1">
+                <a routerLink="/dashboard/main">
+                  <i class="fas fa-home"></i> Pannello Principale</a>
+              </li>
+              <!-- <li class="breadcrumb-item bcrumb-2">
+                <a href="javascript:void(0)" onClick="return false;">Anno</a>
+              </li> -->
+              <li class="breadcrumb-item active">Anno {{anno}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Basic Table -->
+      <div class="row clearfix">
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <h2>
+                <strong>Nuovi</strong> Donatori</h2>
+              
+            </div>
+            <div class="body table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th colspan="10" class="text-center">Nuovi Donatori</th>
+                  </tr>
+                  <tr>
+                    <th rowspan="2" class="text-center">Mese</th>
+                    <th colspan="3" class="text-center">S.T.</th>
+                    <th colspan="3" class="text-center">Autoemoteca</th>
+                    <th colspan="3" class="text-center">S.T. + Autoemoteca</th>
+                  </tr>
+                  <tr>
+                    <th class="text-center">Uomini</th>
+                    <th class="text-center">Donne</th>
+                    <th class="text-center">Tot</th>
+                    <th class="text-center">Uomini</th>
+                    <th class="text-center">Donne</th>
+                    <th class="text-center">Tot</th>
+                    <th class="text-center">Uomini</th>
+                    <th class="text-center">Donne</th>
+                    <th class="text-center">Tot</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let luogo of luogo_raccolta">
+                    <th scope="row">{{luogo.Gennaio}}</th>
+                    <td>{{luogo.Uomini_ST}}</td>
+                    <td>{{luogo.Donne_ST}}</td>
+                    <td>{{(luogo.Uomini_ST*1+luogo.Donne_ST*1)}}</td>
+                    <td>{{luogo.Uomini_A}}</td>
+                    <td>{{luogo.Donne_A}}</td>
+                    <td>{{luogo.Uomini_A*1+luogo.Donne_A*1}}</td>
+                    <td>{{(luogo.Uomini_ST*1+luogo.Uomini_A*1)}}</td>
+                    <td>{{(luogo.Donne_ST*1+luogo.Donne_A*1)}}</td>
+                    <td><span class="badge col-red">{{(luogo.Uomini_ST*1+luogo.Donne_ST*1+luogo.Uomini_A*1+luogo.Donne_A*1)}}</span></td>
+                  </tr>
+                  <tr class="l-bg-orange">
+                      <th>Totale</th>
+                      <th>{{totali_raccolta.Uomini_ST}}</th>
+                      <th>{{totali_raccolta.Donne_ST}}</th>
+                      <th>{{totali_raccolta.Uomini_ST+totali_raccolta.Donne_ST}}</th>
+                      <th>{{totali_raccolta.Uomini_A}}</th>
+                      <th>{{totali_raccolta.Donne_A}}</th>
+                      <th>{{totali_raccolta.Uomini_A + totali_raccolta.Donne_A}}</th>
+                      <th>{{totali_raccolta.Uomini_A + totali_raccolta.Uomini_ST}}</th>
+                      <th>{{totali_raccolta.Donne_ST + totali_raccolta.Donne_A}}</th>
+                      <td><span class="badge col-red">{{totali_raccolta.Donne_ST + totali_raccolta.Donne_A+totali_raccolta.Uomini_A + totali_raccolta.Uomini_ST}}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+              <div class="header">
+                <h2>
+                  <strong>Fasce</strong> Età</h2>
+                
+              </div>
+              <div class="body table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th colspan="7" class="text-center">Fasce di Età</th>
+                    </tr>
+                    <tr>
+                      <th class="text-center">Mese</th>
+                      <th class="text-center">18 - 28</th>
+                      <th class="text-center">29 - 38</th>
+                      <th class="text-center">39 - 48</th>
+                      <th class="text-center">49 - 58</th>
+                      <th class="text-center">59 - 69</th>
+                      <th class="text-center">> 70</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let fasce of fasce_eta">
+                      <th scope="row">{{fasce.Gennaio}}</th>
+                      <td>{{fasce.eta_18_28}}</td>
+                      <td>{{fasce.eta_29_38}}</td>
+                      <td>{{fasce.eta_39_48}}</td>
+                      <td>{{fasce.eta_49_58}}</td>
+                      <td>{{fasce.eta_59_69}}</td>
+                      <td>{{fasce.eta_70}}</td>
+                    </tr>
+                    <tr class="l-bg-orange">
+                      <th class="text-center">Totale</th>
+                      <th class="text-center">{{totali_fasce['18_28']}}</th>
+                      <th class="text-center">{{totali_fasce['29_38']}}</th>
+                      <th class="text-center">{{totali_fasce['39_48']}}</th>
+                      <th class="text-center">{{totali_fasce['49_58']}}</th>
+                      <th class="text-center">{{totali_fasce['59_69']}}</th>
+                      <th class="text-center">{{totali_fasce['70']}}</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+    </div>
+  </section>

@@ -1,0 +1,462 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Scheda Donatore <button type="button" class="btn btn-outline-success" (click)="openDialog()" *ngIf="donatore.cognome">Nuova Donazione</button></h4>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Scheda Donatore</h2>
+
+          </div>
+          <div class="body">
+            <form class="register-form m-4" [formGroup]="register" (ngSubmit)="onRegister()">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Tessera</mat-label>
+                        <input matInput formControlName="tessera" required (change)="carrica($event)">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Cognome</mat-label>
+                          <input matInput formControlName="cognome" (keyup.enter)="richieta_aggiornamento('cognome',$event)">
+                          <mat-icon matSuffix>face</mat-icon>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Nome</mat-label>
+                            <input matInput formControlName="nome" (keyup.enter)="richieta_aggiornamento('nome',$event)">
+                            <mat-icon matSuffix>face</mat-icon>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Data Nascita</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="data_di_nascita" (keyup.enter)="richieta_aggiornamento('data_di_nascita',$event)">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                          </div> 
+                          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Luogo Nascita</mat-label>
+                                <input matInput formControlName="luogo_di_nascita" (keyup.enter)="richieta_aggiornamento('luogo_di_nascita',$event)">
+                                <mat-icon matSuffix>location_city</mat-icon>
+                              </mat-form-field>
+                            </div>                                                 
+                                                   
+                  </div>              
+              <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Comune Residenza</mat-label>
+                    <input matInput formControlName="comune_di_residenza" (keyup.enter)="richieta_aggiornamento('comune_di_residenza',$event)">
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Indirizzo Residenza</mat-label>
+                      <input matInput formControlName="indirizzo_residenza" (keyup.enter)="richieta_aggiornamento('indirizzo_residenza',$event)">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>CAP</mat-label>
+                        <input matInput formControlName="cap" (keyup.enter)="richieta_aggiornamento('cap',$event)">
+                      </mat-form-field>
+                    </div> 
+                  <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Comune Domicilio</mat-label>
+                        <input matInput formControlName="comune_domicilio" (keyup.enter)="richieta_aggiornamento('comune_domicilio',$event)">
+                      </mat-form-field>
+                    </div> 
+                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Indirizzo Domicilio</mat-label>
+                          <input matInput formControlName="indirizzo_domicilio" (keyup.enter)="richieta_aggiornamento('indirizzo_domicilio',$event)">
+                        </mat-form-field>
+                      </div> 
+                      <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>CAP</mat-label>
+                            <input matInput formControlName="cap_domicilio" (keyup.enter)="richieta_aggiornamento('cap_domicilio',$event)">
+                          </mat-form-field>
+                        </div>                                                        
+              </div>
+              <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Telefono</mat-label>
+                        <input matInput formControlName="telefono" (keyup.enter)="richieta_aggiornamento('telefono',$event)">
+                      </mat-form-field>
+                    </div> 
+                    <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 mb-2">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Email</mat-label>
+                          <input matInput formControlName="email" (keyup.enter)="richieta_aggiornamento('email',$event)">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Codice Fiscale</mat-label>
+                            <input matInput formControlName="codice_fiscale" class="uppercase" (keyup.enter)="richieta_aggiornamento('codice_fiscale',$event)">
+                          </mat-form-field>
+                        </div>                                                            
+                    </div>
+                    <div class="row">        
+                      <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>GG Ultima Donazione</mat-label>
+                            <input matInput formControlName="giorni_ultima_donazione">
+                          </mat-form-field>                            
+                        </div>                        
+                      <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Gruppo</mat-label>
+                            <mat-select formControlName="gruppo" (selectionChange)="richieta_aggiornamento_s('gruppo',$event)">
+                              <mat-option *ngFor="let g of ['0+','0-','A+','A-','B+','B-','AB+','AB-']" [value]="g">
+                                {{g}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>                            
+                        </div> 
+                        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Fenotipo</mat-label>
+                              <mat-select formControlName="fenotipo" (selectionChange)="richieta_aggiornamento_s('fenotipo',$event)">
+                                <mat-option *ngFor="let g of ['ccdee-','Ccdee-','CCDee-','CcDee-','CcDEe-','ccDee-','ccDEe-','ccDEE-','CcDEe-','CCDEe-','ccdee+','CcDEe+','CcDee+','CCDee+','ccDEe+','ccDee+','ccDEE+','ccdEe-','ccdEe+']" [value]="g">
+                                  {{g}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>                            
+                          </div>                                                  
+                          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Ultima Donazione</mat-label>
+                                <input matInput [matDatepicker]="ud" formControlName="ultima_donazione" (keyup.enter)="richieta_aggiornamento('ultima_donazione',$event)">
+                            <mat-datepicker-toggle matSuffix [for]="ud"></mat-datepicker-toggle>
+                            <mat-datepicker #ud></mat-datepicker>
+                              </mat-form-field>                            
+                            </div>                        
+                          <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Don. Tot. Sangue Int.</mat-label>
+                                <input matInput type="number" formControlName="donazione_totale_sangue_intero" (keyup.enter)="richieta_aggiornamento('donazione_totale_sangue_intero',$event)">
+                              </mat-form-field>                            
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Età</mat-label>
+                                  <input matInput formControlName="eta">
+                                </mat-form-field>                            
+                              </div>
+                              <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 mb-2">
+                                  <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Sesso</mat-label>
+                                    <mat-select formControlName="sesso" (selectionChange)="richieta_aggiornamento_s('sesso',$event)">
+                                      <mat-option value="M">M</mat-option>
+                                      <mat-option value="F">F</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>                            
+                                </div>                
+              </div>
+              <div class="row">        
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Don. Tot. PLT</mat-label>
+                        <input matInput formControlName="donazione_totale_plt" (keyup.enter)="richieta_aggiornamento('donazione_totale_plt',$event)">
+                      </mat-form-field>                          
+                  </div>                       
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Ultima Don. PLT</mat-label>
+                        <input matInput [matDatepicker]="plt" formControlName="ultima_donazione_plt" (keyup.enter)="richieta_aggiornamento('ultima_donazione_plt',$event)">
+                        <mat-datepicker-toggle matSuffix [for]="plt"></mat-datepicker-toggle>
+                        <mat-datepicker #plt></mat-datepicker>
+                      </mat-form-field> 
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Don. Tot. Plasma</mat-label>
+                        <input matInput formControlName="donazione_totale_plasma" (keyup.enter)="richieta_aggiornamento('donazione_totale_plasma',$event)">
+                      </mat-form-field>                          
+                  </div>                       
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Ultima Don. Plasma</mat-label>
+                        <input matInput [matDatepicker]="plasm" formControlName="ultima_donazione_plasma" (keyup.enter)="richieta_aggiornamento('ultima_donazione_plasma',$event)">
+                        <mat-datepicker-toggle matSuffix [for]="plasm"></mat-datepicker-toggle>
+                        <mat-datepicker #plasm></mat-datepicker>
+                      </mat-form-field> 
+                </div>    
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Don. Tot. ADMO</mat-label>
+                        <input matInput formControlName="donazione_totale_admo" (keyup.enter)="richieta_aggiornamento('donazione_totale_admo',$event)">
+                      </mat-form-field>                          
+                  </div>                       
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Ultima Don. ADMO</mat-label>
+                        <input matInput [matDatepicker]="admo" formControlName="ultima_donazione_admo" (keyup.enter)="richieta_aggiornamento('ultima_donazione_admo',$event)">
+                        <mat-datepicker-toggle matSuffix [for]="admo"></mat-datepicker-toggle>
+                        <mat-datepicker #admo></mat-datepicker>
+                      </mat-form-field> 
+                </div>                                                                              
+          </div>
+              <div class="row">
+                  <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Don. Tot. Multicomp.</mat-label>
+                          <input matInput formControlName="donazione_totale_multicomponente" (keyup.enter)="richieta_aggiornamento('donazione_totale_multicomponente',$event)">
+                        </mat-form-field>                          
+                    </div>                       
+                  <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Ultima Don. Multicomp.</mat-label>
+                          <input matInput [matDatepicker]="multi" formControlName="ultima_donazione_multicomponente" (keyup.enter)="richieta_aggiornamento('ultima_donazione_multicomponente',$event)">
+                          <mat-datepicker-toggle matSuffix [for]="multi"></mat-datepicker-toggle>
+                          <mat-datepicker #multi></mat-datepicker>
+                        </mat-form-field> 
+                  </div> 
+
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Ultima ECG</mat-label>
+                        <input matInput [matDatepicker]="ecg" formControlName="ultima_ecg" (keyup.enter)="richieta_aggiornamento('ultima_ecg',$event)">
+                        <mat-datepicker-toggle matSuffix [for]="ecg"></mat-datepicker-toggle>
+                        <mat-datepicker #ecg></mat-datepicker>
+                      </mat-form-field> 
+                </div> 
+                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Ferritina</mat-label>
+                      <input matInput formControlName="ferritina" (keyup.enter)="richieta_aggiornamento('ferritina',$event)">
+                    </mat-form-field>                          
+                </div>                       
+              <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Data Ferritina</mat-label>
+                      <input matInput [matDatepicker]="df" formControlName="data_ferritina" (keyup.enter)="richieta_aggiornamento('data_ferritina',$event)">
+                      <mat-datepicker-toggle matSuffix [for]="df"></mat-datepicker-toggle>
+                      <mat-datepicker #df></mat-datepicker>
+                    </mat-form-field> 
+              </div>  
+              <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Valore plt</mat-label>
+                  <input matInput formControlName="valore_plt" (keyup.enter)="richieta_aggiornamento('valore_plt',$event)">
+                  </mat-form-field> 
+            </div>                              
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Note Generiche</mat-label>
+                      <textarea matInput formControlName="note_generiche" (dblclick)="richieta_aggiornamento('note_generiche',$event)"></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Note Relative alla Salute</mat-label>
+                        <textarea matInput formControlName="note_relative_alla_salute" (dblclick)="richieta_aggiornamento('note_relative_alla_salute',$event)"></textarea>
+                      </mat-form-field>
+                    </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <mat-checkbox class="example-margin" formControlName="smart_donor" (change)="richieta_aggiornamento_c('smart_donor',$event)">
+                   Smart Donor
+                  </mat-checkbox>
+                  <mat-checkbox class="example-margin" formControlName="donatore_attivo">Donatore Attivo</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="candidabile" (change)="richieta_aggiornamento_c('candidabile',$event)">Candidabile</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="portatore_sano" (change)="richieta_aggiornamento_c('portatore_sano',$event)">Portatore Sano</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="inidoneo" (change)="richieta_aggiornamento_c('inidoneo',$event)">Inidoneo</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="deceduto" (change)="richieta_aggiornamento_c('deceduto',$event)">Deceduto</mat-checkbox>
+                        <mat-checkbox class="example-margin" formControlName="ex_donatore" (change)="richieta_aggiornamento_c('ex_donatore',$event)">Ex Donatore</mat-checkbox>
+                        
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="card">
+              <div class="header">
+                <h2>
+                  <strong>Sangue Intero</strong></h2>
+                
+              </div>
+              <div class="body table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>DATA</th>
+                      <th>LUOGO</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let s of sangue; index as i">
+                      <th scope="row">{{(sangue.length-i)}}</th>
+                      <td>{{s.data}}</td>
+                      <td>{{s.luogo}}</td>
+                      <td style="cursor: pointer;" (click)="eliminaDonazione(s.id,'donazioni',s.tessera)">
+                        <i class="material-icons text-danger">delete</i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <div class="card">
+              <div class="header">
+                <h2>
+                  <strong>Piastrine</strong></h2>
+                
+              </div>
+              <div class="body table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>DATA</th>
+                      <th>LUOGO</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let ef of eferesi; index as i">
+                      <th scope="row">{{(eferesi.length-i)}}</th>
+                      <td>{{ef.data}}</td>
+                      <td>{{ef.luogo}}</td>
+                      <td style="cursor: pointer;" (click)="eliminaDonazione(ef.id,'donazioni_piastrine',ef.tessera)">
+                        <i class="material-icons text-danger">delete</i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="header">
+                  <h2>
+                    <strong>Plasma</strong></h2>
+                  
+                </div>
+                <div class="body table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>DATA</th>
+                        <th>LUOGO</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let ad of plasma; index as i">
+                        <th scope="row">{{(plasma.length-i)}}</th>
+                        <td>{{ad.data}}</td>
+                        <td>{{ad.luogo}}</td>
+                        <td style="cursor: pointer;" (click)="eliminaDonazione(ad.id,'donazioni_plasma',ad.tessera)">
+                          <i class="material-icons text-danger">delete</i>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <div class="card">
+                  <div class="header">
+                    <h2>
+                      <strong>Multicomponenti</strong></h2>
+                    
+                  </div>
+                  <div class="body table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>DATA</th>
+                          <th>LUOGO</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let ad of multicomponenti; index as i">
+                          <th scope="row">{{(multicomponenti.length-i)}}</th>
+                          <td>{{ad.data}}</td>
+                          <td>{{ad.luogo}}</td>
+                          <td style="cursor: pointer;" (click)="eliminaDonazione(ad.id,'donazioni_multicomponenti',ad.tessera)">
+                            <i class="material-icons text-danger">delete</i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>             
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="card">
+                  <div class="header">
+                    <h2>
+                      <strong>ADMO</strong></h2>
+                    
+                  </div>
+                  <div class="body table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>DATA</th>
+                          <th>LUOGO</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let ad of d_admo; index as i">
+                          <th scope="row">{{(d_admo.length-i)}}</th>
+                          <td>{{ad.data}}</td>
+                          <td>{{ad.luogo}}</td>
+                          <td style="cursor: pointer;" (click)="eliminaDonazione(ad.id,'donazioni_admo',ad.tessera)">
+                            <i class="material-icons text-danger">delete</i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>                           
+      </div>
+  </div>
+</section>

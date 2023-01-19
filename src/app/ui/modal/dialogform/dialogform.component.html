@@ -1,0 +1,55 @@
+<div>
+  <h2 mat-dialog-title>Nuova Donazione</h2>
+  <div mat-dialog-content>
+    <form [formGroup]="addCusForm" (ngSubmit)="onSubmitClick()">
+      <div class="text-inside">
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker" formControlName="data" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="addCusForm.controls.data.hasError('required')">
+            Inserire la Data!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="text-inside">
+          <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Tipo di Donazione</mat-label>
+              <mat-select formControlName="tipo_donazione" required>
+                <mat-option *ngFor="let g of tipologia " [value]="g">
+                  {{g}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="addCusForm.controls.tipo_donazione.hasError('required')">
+                  Campo obbligatorio!
+                </mat-error>
+            </mat-form-field> 
+      </div>
+      <div class="text-inside" *ngIf="addCusForm.controls.tipo_donazione.value=='Aferesi'" style="margin-bottom: 15px;">
+          <mat-radio-group aria-labelledby="example-radio-group-label" 
+          formControlName="eferesi">
+          <mat-radio-button class="example-radio-button ml-0" *ngFor="let scelta of scelta_eferesi" [value]="scelta" required>
+            {{scelta}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>      
+      <div class="text-inside">
+          <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Luogo Donazione</mat-label>
+              <mat-select formControlName="luogo_donazione" required>
+                <mat-option *ngFor="let g of ['Autoemoteca','S.T.']" [value]="g">
+                  {{g}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="addCusForm.controls.luogo_donazione.hasError('required')">
+                  Campo obbligatorio!
+                </mat-error>
+            </mat-form-field> 
+      </div>
+      <div class="btn-sec">
+        <button class="mr-3" mat-raised-button color="primary" [disabled]="!addCusForm.valid || !check_eferesi()">Inserisci</button>
+        <button type="button" mat-button (click)="closeDialog()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div>
+    <h2 mat-dialog-title>{{dati_donatore.tessera}} - Note</h2>
+    <div mat-dialog-content>
+      <form [formGroup]="addCusForm" (ngSubmit)="onSubmitClick()">
+
+        <div class="text-inside">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Cognome</mat-label>
+                <input matInput formControlName="cognome" required>
+              </mat-form-field> 
+        </div>
+        <div class="text-inside"  style="margin-bottom: 15px;">
+        </div>      
+        <div *ngIf="data.campo=='nota_generica'">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nota Generica</mat-label>
+                <textarea matInput formControlName="note" rows="10"></textarea>
+              </mat-form-field>
+        </div>
+        <div *ngIf="data.campo=='nota_salute'">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nota sulla Salute</mat-label>
+                <textarea matInput formControlName="note_salute" rows="10"></textarea>
+              </mat-form-field>
+        </div>
+        <div class="btn-sec">
+          <button class="mr-3" mat-raised-button color="primary" >Aggiorna</button>
+          <button type="button" mat-button (click)="closeDialog()">Annulla</button>
+        </div>
+      </form>
+    </div>
+  </div>
