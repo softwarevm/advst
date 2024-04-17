@@ -2,7 +2,7 @@ import { RouteInfo } from './sidebar.metadata';
 export const ROUTES: RouteInfo[] = [
   {
     path: '',
-    title: '-- Main',
+    title: 'Pannello Principale',
     moduleName: '',
     iconType: '',
     icon: '',
@@ -38,7 +38,7 @@ export const ROUTES: RouteInfo[] = [
   // },
   {
     path: '',
-    title: '-- Servizi',
+    title: 'Servizi',
     moduleName: '',
     iconType: '',
     icon: '',
@@ -379,6 +379,18 @@ export const ROUTES: RouteInfo[] = [
         path: '/tables/nuovo-donatore',
         title: 'Nuovi Donatori',
         moduleName: 'tables',
+        iconType: '',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        badge: '',
+        badgeClass: '',
+        submenu: [],
+      },
+      {
+        path: '/widget/data-widget',
+        title: 'Statistiche FIDAS',
+        moduleName: 'widget',
         iconType: '',
         icon: '',
         class: 'ml-menu',
