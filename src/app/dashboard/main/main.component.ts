@@ -45,6 +45,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  tdt:number
   anno: any = (localStorage.getItem('anno')) ? localStorage.getItem('anno') : new Date().getFullYear()
   donatori: any = [
     {donatori_sangue:''},
@@ -270,6 +271,9 @@ array.reduce(function(res, value) {
   }
 
   ngOnInit() {
+    console.log('cucu')
+    this.http.get<any>(environment.apiUrl+'/totali_dei_totali.php')
+    .subscribe(response => this.tdt = response[0].tdt)
     const anno = {anno:this.anno}
     this.http.post(environment.apiUrl+'/donazioni_mensili.php',JSON.stringify(anno))
     .subscribe({
@@ -446,7 +450,6 @@ this.http.post(environment.apiUrl+'/grafico_mensile.php',JSON.stringify(anno))
   }
 
   color(valore) {
-    console.log(valore)
     if(valore<100) {
       return 'warn';
     }

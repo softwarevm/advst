@@ -21,7 +21,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col mt-0">
-                      <h5 class="card-title">Sangue</h5>
+                      <h5 class="card-title">Donatori Sangue</h5>
                     </div>
                     <div class="col-auto">
                       <div class="col-green">
@@ -42,7 +42,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col mt-0">
-                      <h5 class="card-title">Plasma</h5>
+                      <h5 class="card-title">Donatori Plasma</h5>
                     </div>
                     <div class="col-auto">
                       <div class="col-purple">
@@ -65,7 +65,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col mt-0">
-                      <h5 class="card-title">Piastrine</h5>
+                      <h5 class="card-title">Donatori Piastrine</h5>
                     </div>
                     <div class="col-auto">
                       <div class="col-blue">
@@ -86,7 +86,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col mt-0">
-                      <h5 class="card-title">Admo</h5>
+                      <h5 class="card-title">Totale Donazioni</h5>
                     </div>
                     <div class="col-auto">
                       <div class="col-green">
@@ -94,12 +94,12 @@
                       </div>
                     </div>
                   </div>
-                  <h1 class="mt-1 mb-3">{{donatori[4].donatori_admo}}</h1>
+                  <h1 class="mt-1 mb-3">{{tdt}}</h1>
                   <div class="mb-0">
                     <span class="text-success m-r-10"><i class="material-icons col-green align-middle">trending_up</i>
-                      {{(donatori[4].donatori_admo/tot*100).toFixed(2)}}%
+                      100%
                     </span>
-                    <span class="text-muted">Sul totale</span>
+                    <span class="text-muted"></span>
                   </div>
                 </div>
               </div>
@@ -163,8 +163,8 @@
                 <tbody>
                   <tr class="l-bg-orange">
                     <td class="font-bold nero">Annuale</td>
-                    <td class="nero">{{(donazioni_mensili.cumulata/donazioni_mensili[0].annuale*100).toFixed(0)}}%<mat-progress-bar mode="determinate" [value]="(donazioni_mensili.cumulata/donazioni_mensili[0].annuale*100)"></mat-progress-bar></td>
-                    <td class="nero">{{-(donazioni_mensili[0].annuale - donazioni_mensili.cumulata)}}</td>
+                    <td class="nero">{{(donazioni_mensili.cumulata/donazioni_mensili[0]?.annuale*100).toFixed(0)}}%<mat-progress-bar mode="determinate" [value]="(donazioni_mensili.cumulata/donazioni_mensili[0]?.annuale*100)"></mat-progress-bar></td>
+                    <td class="nero">{{-(donazioni_mensili[0]?.annuale - donazioni_mensili.cumulata)}}</td>
                   </tr>
                   <tr *ngFor="let d of donazioni_mensili">
                     <td>{{d.Gennaio}}</td>

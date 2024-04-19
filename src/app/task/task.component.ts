@@ -536,6 +536,29 @@ scarica() {
           this.saveTask(nav,url)
           break; 
       } 
+      case 'Inidoneo': { 
+        const url = '/filtro_inidoneo.php' 
+        this.saveTask(nav,url)
+        break; 
+    } 
+
+    case 'Deceduto': { 
+      const url = '/filtro_deceduto.php' 
+      this.saveTask(nav,url)
+      break; 
+  } 
+
+  case 'Ex Donatore': { 
+    const url = '/filtro_ex_donatore.php' 
+    this.saveTask(nav,url)
+    break; 
+} 
+
+case 'Plasma': { 
+  const url = '/filtro_plasma.php' 
+  this.saveTask(nav,url)
+  break; 
+} 
         default: { 
            //statements; 
            break; 

@@ -59,7 +59,7 @@
                             <mat-form-field class="example-full-width" appearance="outline">
                               <mat-label>Seleziona Filtri</mat-label>
                               <mat-select formControlName="filtri_personalizzati" (selectionChange)="cambio_filtro($event)"> 
-                                <mat-option *ngFor="let a of ['Compleanno','Località','Note','Gruppo','Piastrine','Numero tessera','Cognome','Tutti']" [value]="a">
+                                <mat-option *ngFor="let a of ['Compleanno','Località','Note','Gruppo','Piastrine','Numero tessera','Cognome','Tutti','Inidoneo','Deceduto','Ex Donatore','Plasma']" [value]="a">
                                   {{a}}
                                 </mat-option>
                               </mat-select>

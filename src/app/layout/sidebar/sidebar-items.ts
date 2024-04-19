@@ -388,7 +388,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
       {
-        path: '/widget/data-widget',
+        path: '/widget/statistiche-fidas',
         title: 'Statistiche FIDAS',
         moduleName: 'widget',
         iconType: '',
